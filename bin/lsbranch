@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function lpad {
+    if [ "$1" ]; then
+        word="$1";
+    else
+        word="";
+    fi;
+
+	if [ "$2" ]; then
+	    len=$((`echo $2 | sed 's/[^0-9]//g'`));
+	else
+	    len=${#word};
+	fi;
+
+    if [ "$3" ]; then
+        padding="$3";
+    else
+        padding=" ";
+    fi;
+
+    while [ ${#word} -lt $len ]; do
+        word="$padding$word";
+    done;
+    echo "$word";
+}
+
+for i in `ls -d */`; do \
+	v=`cd $i; git branch 2>/dev/null | grep "^*" | cut -d" " -f 2`; \
+	if [ "$TERM" != "dumb" ]; then
+		echo -e "\033[32m `lpad $i 25` \033[0m \033[34;1m $v \033[0m";
+	else
+		echo "$i [$v]";
+	fi
+done
+

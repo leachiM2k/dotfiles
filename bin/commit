@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# = 0 ]; then
+	pull
+	git commit -a && echo "OK" || echo "FAILED"
+else
+	pull
+	git commit $@ && echo "OK" || echo "FAILED"
+fi

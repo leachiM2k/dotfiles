@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [[ $1 && $2 ]]; then
+	git pull origin $2:$1
+elif [ $1 ]; then
+	git pull origin $1:$1
+	co $1
+else
+	branch=`git branch | grep \* | sed "s/\* //"`
+	git pull origin $branch
+fi

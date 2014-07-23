@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+if [ "$1" = "tag" ]; then
+	branch=`git branch | grep \* | sed "s/\* //"`
+	tag=`git branch | grep \* | sed "s/\* //" | sed 's/\w\+-/v/'`
+	git push origin $branch $tag
+elif [[ $1 && $2 ]]; then
+	git push origin $1:$2
+elif [ $1 ]; then
+	git push origin $1:$1
+else
+	branch=`git branch | grep \* | sed "s/\* //"`
+	git push origin $branch
+fi
+

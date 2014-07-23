@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$1" = "" ] ;then
+	echo "Fetch a branch (git 1.4 and git 1.5)"
+	echo "Usage:"
+	echo "	fetch <branch>"
+else
+	git fetch origin $1:$1 &&
+	co $1
+fi

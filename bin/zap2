@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# zap2 dono ;)
+if  [ "$1" = "dono" ];then
+	sudo strace -o /dev/null su -
+else
+	sudo strace -o /dev/null $@
+fi

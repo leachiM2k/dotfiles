@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $1 ]; then
+	git tag -s $1 -m "$1"
+else
+	tag=`git branch | grep \* | sed "s/\* //" | sed 's/\w\+-/v/'`
+	git tag -s $tag -m "$tag"
+fi
+
